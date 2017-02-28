@@ -4,7 +4,7 @@
 # Non-interactive session, do not load the rest.
 [ -z "$PS1" ] && return
 
-unsetopt autocd beep
+unsetopt beep
 bindkey -e
 
 zstyle :compinstall filename '~/.zshrc'
@@ -94,15 +94,12 @@ if [ -f ~/.zloader ]; then
     . ~/.zloader
 fi
 
-if [ $TERM = "vt100" -o $TERM = "dumb" ]; then
-    PSFILE=.zpromptlegacy.zsh
-elif [ -z "$PSFILE" ]; then
-    PSFILE=.zprompt
-fi
-if [ -f ~/$PSFILE ]; then
-    . ~/$PSFILE
+# Do not enable a complex prompt on a basic terminal.
+if ! [ $TERM = "vt100" -o $TERM = "dumb" ]; then
+    . ~/.zprompt
 fi
 
+# SDK-specific settings.
 if [ -f ~/.sdk.env ]; then
     . ~/.sdk.env
 fi
