@@ -2,26 +2,27 @@
 # vim: set fdm=marker ft=zsh :
 
 PSUSER="%(#.%F{red}.%F{green})%n%f"
-PSSEP='@'
-if [ -n "$SSH_CONNECTION" ]; then
-    PSHOST="%F{yellow}%B%m%b%f"
-else
-    PSHOST="%F{yellow}%m%f"
-fi
+PSSEP1="%F{yellow} <%f"
+#if [ -n "$SSH_CONNECTION" ]; then
+#    PSHOST="%F{yellow}%B%m%b%f"
+#else
+#    PSHOST="%F{yellow}%m%f"
+#fi
 PSDIR="%(#.%F{magenta}.%F{cyan})%B%(4~:../%3~:%~)%b%f"
+PSSEP2="%F{yellow}> %f"
 
 PS1='\
 ${PSINFO:+$PSINFO%b%f }\
 ${PRIV+%F{red\}%B"PRIV"%b%f }\
 $PSUSER\
-$PSSEP\
-$PSHOST \
+$PSSEP1\
 \
 ${AMOUNT_DEVICE:+%F{green\}%B$AMOUNT_DEVICE%b%f }\
-$PSDIR \
+$PSDIR\
+$PSSEP2\
 ${LOCAL_HISTFILE:+%F{magenta\}#%f }\
 ${ZLOCAL:+$ZLOCAL }\
-%(#.%F{red}%BΩ%b%f.%F{blue}%Bλ%b%f) '
+%(#.%F{red}%B→%b%f.%F{blue}%B→%b%f) '
 
 PS2='%_ %F{blue}%B>>=%b%f '
 

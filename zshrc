@@ -17,7 +17,7 @@ compinit
 (( $+commands[lesspipe] )) && eval `lesspipe`
 
 autoload zmv zed
-autoload -U insert-files && zle -N insert-files && bindkey '^X^F' insert-files
+#autoload -U insert-files && zle -N insert-files && bindkey '^X^F' insert-files
 
 autoload run-help
 HELPDIR=$HOME/.zsh-help
@@ -31,19 +31,19 @@ SAVEHIST=10000
 WORDCHARS='*?_-.[]~!#$%(){}<>'
 
 TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\n\ncpu\t%P\ntotal\t%*E'
-REPORTTIME=10
+# REPORTTIME=10
 
-if (( $+commands[e] )); then
-    export EDITOR=e # Emacs wrapper necessary because of the broken word splitting in some programs
-else
-    export EDITOR=vim
-fi
-export ALTERNATE_EDITOR="vim"
-export SUDO_EDITOR="/usr/bin/emacsclient -c -a vim"
-export BROWSER="chromium"
+# if (( $+commands[e] )); then
+#    export EDITOR=e # Emacs wrapper necessary because of the broken word splitting in some #programs
+#else
+    export EDITOR=nano
+#fi
+#export ALTERNATE_EDITOR="vim"
+#export SUDO_EDITOR="/usr/bin/emacsclient -c -a vim"
+#export BROWSER="chromium"
 export PAGER="less"
-export TERMCMD="urxvtcd"
-setopt hist_ignore_all_dups     \
+#export TERMCMD="urxvtcd"
+setopt hist_ignore_dups         \
     hist_ignore_space           \
     hist_reduce_blanks          \
     append_history              \
@@ -53,10 +53,8 @@ setopt hist_ignore_all_dups     \
     extended_history            \
     hist_no_store               \
     interactivecomments         \
-    auto_cd                     \
     rc_quotes                   \
     \
-    extended_glob               \
     magicequalsubst             \
     longlistjobs                \
     \
@@ -68,29 +66,29 @@ setopt hist_ignore_all_dups     \
 
 PLUGINS_DIR=~/.zplugins
 PLUGINS=(
-    zcolors
-    zle-config
+    #zcolors
+    #zle-config
     zaliases
     zcompletion
-    zscripts
+    #zscripts
     zpriv
-    zXephyr
+    #zXephyr
     zmancolor
-    filehandlers
-    urxvt_cwd-spawn
+    #filehandlers
+    #urxvt_cwd-spawn
     term-title
-    perl-edit
-    fasd
-    scratchdir
-    zlocalenv
+    #perl-edit
+    #fasd
+    #scratchdir
+    #zlocalenv
     my-fixes
-    zcapture
-    ignore
-    localhistory
-    ztodo
-    fzf
-    zgen
-    texas
+    #zcapture
+    #ignore
+    #localhistory
+    #ztodo
+    #fzf
+    #zgen
+    #texas
     )
 if [ -f ~/.zloader ]; then
     . ~/.zloader

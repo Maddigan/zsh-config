@@ -1,287 +1,287 @@
 # -*- mode: shell-script -*-
 # vim: ft=zsh fdm=marker :
 
-alias cd=' cd'
+# alias cd=' cd'
 
-alias mmv='noglob zmv -W'
-alias ccp='noglob zmv -W -C'
+#alias mmv='noglob zmv -W'
+#alias ccp='noglob zmv -W -C'
 
-alias ref='cp --reflink=always'
+#alias ref='cp --reflink=always'
 
 if (( $+commands[dircolors] )); then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls=' ls --color=auto --group-directories-first'
+    alias ls='ls --color=auto --group-directories-first'
     alias grep='grep --color=auto'
 fi
-alias lh='ls -lh'
-alias la='ls -A'
-alias l='ls'
-if (( $+commands[colout] )); then
-    lhc()
-    {
-        lh --color "$@" | colout '^(.)([-rwx]{3})([-rwx]{3})([-rwx]{3})' blue,red,yellow,green
-    }
-fi
-if (( $+commands[color-paths] )); then
-    locate()
-    {
-        command locate "$@" | color-paths
-    }
-fi
+#alias lh='ls -lh'
+#alias la='ls -A'
+#alias l='ls'
+#if (( $+commands[colout] )); then
+#    lhc()
+#    {
+#        lh --color "$@" | colout '^(.)([-rwx]{3})([-rwx]{3})([-rwx]{3})' blue,red,yellow,green
+#    }
+#fi
+#if (( $+commands[color-paths] )); then
+#    locate()
+#    {
+#        command locate "$@" | color-paths
+#    }
+#fi
 
-alias xo='xsel -o'
-alias xi='xsel -i'
-alias hilight='highlight -O ansi'
-alias bellpipe='sed "s/$/\a/"'
+#alias xo='xsel -o'
+#alias xi='xsel -i'
+#alias hilight='highlight -O ansi'
+#alias bellpipe='sed "s/$/\a/"'
 
 alias get='sudo apt install'
 
-ssh-master()
-{
-    if [ $# = 0 ]; then
-        <<EOF
-Syntax:
-    ssh-master <ssh arguments>
-EOF
-        return 1
-    fi
+#ssh-master()
+#{
+#    if [ $# = 0 ]; then
+#        <<EOF
+#Syntax:
+#    ssh-master <ssh arguments>
+#EOF
+#        return 1
+#    fi
 
-    while true; do
-        ssh -MNn "$@"
-        if [ $? = 130 ]; then    # SIGINT
-            break
-        fi
-    done
-}
+#    while true; do
+#        ssh -MNn "$@"
+#        if [ $? = 130 ]; then    # SIGINT
+#            break
+#        fi
+#    done
+#}
 
 # alias -g '^'='2>'               # fish-like stderr redirection
 # alias -g '00'='/dev/null'
 # alias -g '@'='| sudo tee'
 # alias -g '@@'='| sudo tee -a'
 
-alias -g 'GG'='| grep'
+#alias -g 'GG'='| grep'
 
 alias noglob='noglob '
 alias webrun='webrun '
 
 # http://www.reddit.com/r/commandline/comments/1u4iny
-col()
-{
-    awk "{print \$$1}"
-}
+#col()
+#{
+#    awk "{print \$$1}"
+#}
+#
+#g()
+#{
+#    if [ -z "$1" ]; then
+#        1="status"
+#        2="--short"
+#    fi
+#    git "$@"
+#}
+#alias g=' g'
+#compdef g=git
+#gg()
+#{
+#    local HEIGHT=30
+#    if [[ $LINES < 33 ]]; then
+#        HEIGHT=$[$LINES-3]
+#    fi
+#    git g "$@" -n $HEIGHT
+#}
+#alias gg=' gg'
+#alias ggg=' git gg'
+#alias annex=' git annex'
+#alias 'annex-list'='annex-list --allrepos'
+#alias gr=' cd `git rev-parse --show-toplevel`'
 
-g()
-{
-    if [ -z "$1" ]; then
-        1="status"
-        2="--short"
-    fi
-    git "$@"
-}
-alias g=' g'
-compdef g=git
-gg()
-{
-    local HEIGHT=30
-    if [[ $LINES < 33 ]]; then
-        HEIGHT=$[$LINES-3]
-    fi
-    git g "$@" -n $HEIGHT
-}
-alias gg=' gg'
-alias ggg=' git gg'
-alias annex=' git annex'
-alias 'annex-list'='annex-list --allrepos'
-alias gr=' cd `git rev-parse --show-toplevel`'
+#alias 'annex-cleanmeta'='git branch -D `git branch | grep views/`'
+#annex-broadcast()
+#{
+#    local REPO
+#    for REPO in "$(git rev-parse --show-toplevel)"/.git/refs/remotes/*(:t); do
+#        git annex copy --to $REPO "$@"
+#    done
+#}
 
-alias 'annex-cleanmeta'='git branch -D `git branch | grep views/`'
-annex-broadcast()
-{
-    local REPO
-    for REPO in "$(git rev-parse --show-toplevel)"/.git/refs/remotes/*(:t); do
-        git annex copy --to $REPO "$@"
-    done
-}
+#alias wow='g status --short'
+#such()
+#{
+#    g commit -m "$*"
+#}
+#alias such=' noglob such'
+#alias much=g
+#alias so=g
+#
+#alias ql=' quilt'
+#qcd()
+#{
+#    if [ -z "$1" ]; then
+#        unset QUILT_SERIES
+#    else
+#        export QUILT_SERIES=$1
+#    fi
+#    quilt series
+#}
 
-alias wow='g status --short'
-such()
-{
-    g commit -m "$*"
-}
-alias such=' noglob such'
-alias much=g
-alias so=g
+#alias pd=perldoc
+#alias man2='MANPAGER=less man'
+#pdfman()
+#{
+#    zathura =(man -t $* | ps2pdf - -)
+#}
 
-alias ql=' quilt'
-qcd()
-{
-    if [ -z "$1" ]; then
-        unset QUILT_SERIES
-    else
-        export QUILT_SERIES=$1
-    fi
-    quilt series
-}
-
-alias pd=perldoc
-alias man2='MANPAGER=less man'
-pdfman()
-{
-    zathura =(man -t $* | ps2pdf - -)
-}
-
-gdiff()        # not an alias to *not* inherit the completion function
-{
-    local i
-    for (( i=1; i <= $#argv; ++i )); do
-        if [ -e "$argv[i]" ]; then
+#gdiff()        # not an alias to *not* inherit the completion function
+#{
+#    local i
+#    for (( i=1; i <= $#argv; ++i )); do
+#        if [ -e "$argv[i]" ]; then
             # Resolve the symlinks as git-diff doesn't do that. Don't
             # do it for arguments that are not files to leave the
             # -options/--options intact.
-            argv[$i]=$argv[$i]:A
-        fi
-    done
-    git diff --no-index $argv
-}
-alias gdb='gdb -q'
-alias octave='octave -q'
-alias youtube-extract-audio='youtube-dl -x --audio-format mp3 --audio-quality 0'
-if (( $+commands[rlwrap] )); then
-    for c in sbcl guile racket; do
-        if (( $+commands[$c] )); then
-            alias $c="rlwrap $c"
-        fi
-    done
-fi
+#            argv[$i]=$argv[$i]:A
+#        fi
+#    done
+#    git diff --no-index $argv
+#}
+#alias gdb='gdb -q'
+#alias octave='octave -q'
+#alias youtube-extract-audio='youtube-dl -x --audio-format mp3 --audio-quality 0'
+#if (( $+commands[rlwrap] )); then
+#    for c in sbcl guile racket; do
+#        if (( $+commands[$c] )); then
+#            alias $c="rlwrap $c"
+#        fi
+#    done
+#fi
 # alias cal='cal -m'
 if [ "$UID" != "0" ]; then  # not root
-    alias init='sudo init'
-    if ! (( $+commands[e] )); then
-        e()
-        {
-            emacsclient -c "$@"
-        }
-    fi
-    ee()
-    {
-        e -n "$@" && unset HAS_STARTED # do not print \a in the next prompt
-    }
-    eee()
-    {
-        ee "$@" &!
-        exit
-    }
-    alias E='sudoedit'
-    dired()
-    {
-        if [ -z "$1" ]; then
-            1=.
-        fi
-        emacsclient -t $1
-    }
+   # alias init='sudo init'
+   # if ! (( $+commands[e] )); then
+   #     e()
+   #     {
+   #         emacsclient -c "$@"
+   #     }
+   # fi
+   # ee()
+   # {
+   #     e -n "$@" && unset HAS_STARTED # do not print \a in the next prompt
+   # }
+   # eee()
+   # {
+   #     ee "$@" &!
+   #     exit
+   # }
+   # alias E='sudoedit'
+   # dired()
+   # {
+   #     if [ -z "$1" ]; then
+   #         1=.
+   #     fi
+   #     emacsclient -t $1
+   # }
     alias sudo='sudo '
     alias root='sudo su'
     alias exec='exec '
-    alias mv='mv -i'
-    alias cp='cp -i'
+#    alias mv='mv -i'
+#    alias cp='cp -i'
 else    # root
-    dired()
-    {
-        if [ -z "$1" ]; then
-            1=.
-        fi
-        emacs -nw $1
-    }
+   # dired()
+   # {
+   #     if [ -z "$1" ]; then
+   #         1=.
+   #     fi
+   #     emacs -nw $1
+   # }
 fi
 
-remake()
-{
-    1=${1:-all}
-    make clean "$@"
-}
-compdef remake=make
+#remake()
+#{
+#    1=${1:-all}
+#    make clean "$@"
+#}
+#compdef remake=make
 
 # shortcuts
-alias debugterm='clear && sleep 10000000'
-alias zhist=' vim --noplugin ${HISTFILE:-$DEF_HISTFILE}'
-alias curdate='date +%y.%m.%d'
-alias timestamp='date +%s_%F_%H.%M'
-alias t='date +%F_%H.%M'
-alias yargs='xargs -d \\n'
-alias recordscreen='ffmpeg -f x11grab -y -r 60 -s 1680x1050 -i :0.0 -async 0 -vsync 0' # usage: recordscreen FILE.mp4
-alias wgetn='wget --no-use-server-timestamps'
-alias json-format='python -mjson.tool'
-serve()
-{
-    python3 -m http.server ${1:-30080}
-}
-alias exifclean='exiftool -all= -overwrite_original'
+#alias debugterm='clear && sleep 10000000'
+#alias zhist=' vim --noplugin ${HISTFILE:-$DEF_HISTFILE}'
+#alias curdate='date +%y.%m.%d'
+#alias timestamp='date +%s_%F_%H.%M'
+#alias t='date +%F_%H.%M'
+#alias yargs='xargs -d \\n'
+#alias recordscreen='ffmpeg -f x11grab -y -r 60 -s 1680x1050 -i :0.0 -async 0 -vsync 0' # usage: recordscreen FILE.mp4
+#alias wgetn='wget --no-use-server-timestamps'
+#alias json-format='python -mjson.tool'
+#serve()
+#{
+#    python3 -m http.server ${1:-30080}
+#}
+#alias exifclean='exiftool -all= -overwrite_original'
 
-rmdirs()
-{
-    find "$@" -type d -empty -delete -print
-}
+#rmdirs()
+#{
+#    find "$@" -type d -empty -delete -print
+#}
 
-alias cdp='pushd'
-alias pop='popd'
+#alias cdp='pushd'
+#alias pop='popd'
 
-winevd()
-{
-    if [ -z "$2" -o -z "$3" ]; then
-        2=1024
-        3=768
-    fi
-    if [ -z "$WTITLE" ]; then
-        WTITLE=Wine
-    fi
-    wine explorer /desktop=$WTITLE,${2}x${3} "$1"
-    unset WTITLE
-}
+#winevd()
+#{
+#    if [ -z "$2" -o -z "$3" ]; then
+#        2=1024
+#        3=768
+#    fi
+#    if [ -z "$WTITLE" ]; then
+#        WTITLE=Wine
+#    fi
+#    wine explorer /desktop=$WTITLE,${2}x${3} "$1"
+#    unset WTITLE
+#}
 
-seturgent()
-{
-    print -Pn "\e]0;SET_URGENT\a"
-    sleep 0.1
-    wmctrl -r "`xprop -id $WINDOWID | perl -nle 'print $1 if /^WM_NAME.+= \"(.*)\"$/'`" -b add,demands_attention
-    sleep 0.1
-    print -Pn "\e]0;xterm\a"
-}
+#seturgent()
+#{
+#    print -Pn "\e]0;SET_URGENT\a"
+#    sleep 0.1
+#    wmctrl -r "`xprop -id $WINDOWID | perl -nle 'print $1 if /^WM_NAME.+= \"(.*)\"$/'`" -b add,demands_attention
+#    sleep 0.1
+#    print -Pn "\e]0;xterm\a"
+#}
 
-if (( $+commands[pacman-color] )); then
-    alias pacman=pacman-color
-fi
-if (( $+commands[yaourt] )); then
-    alias y=" yaourt"
-    alias yy='y --noconfirm'
-    alias orphan='yaourt -Qqdt'
-    alias orphan-clean='yaourt -Rsun `orphan`'
-fi
-if (( $+commands[systemctl] )); then
-    alias ctl="sudo systemctl"
-fi
+#if (( $+commands[pacman-color] )); then
+#    alias pacman=pacman-color
+#fi
+#if (( $+commands[yaourt] )); then
+#    alias y=" yaourt"
+#    alias yy='y --noconfirm'
+#    alias orphan='yaourt -Qqdt'
+#    alias orphan-clean='yaourt -Rsun `orphan`'
+#fi
+#if (( $+commands[systemctl] )); then
+#    alias ctl="sudo systemctl"
+#fi
 
-if (( $+commands[stow] )); then
-    alias stowadd='stow -v -t ~/local -S'
-    alias stowrm='stow -v -t ~/local -D'
-    alias restow='stow -v -t ~/local -R'
-fi
+#if (( $+commands[stow] )); then
+#    alias stowadd='stow -v -t ~/local -S'
+#    alias stowrm='stow -v -t ~/local -D'
+#    alias restow='stow -v -t ~/local -R'
+#fi
 
-alias pkgprefix='echo $HOME/pkgs/$PWD:t'
+#alias pkgprefix='echo $HOME/pkgs/$PWD:t'
 
-if (( $+commands[lcov] )); then
-    lcov-dwim()
-    {
-        mkdir -p cov && cd cov
+#if (( $+commands[lcov] )); then
+#    lcov-dwim()
+#    {
+#        mkdir -p cov && cd cov
 
-        lcov --zerocounters --directory ..
-        lcov --capture --initial --directory .. --output-file lcov_init.info
-        cd -
-        print -P '%F{red}%BRun your program now...%b%f'
-        PSINFO="(coverage)" $SHELL
-        cd -
-        lcov --capture --directory .. --output-file lcov.info
-        genhtml lcov.info
-        chromium --incognito index.html
-        cd -
-    }
-fi
+#        lcov --zerocounters --directory ..
+#        lcov --capture --initial --directory .. --output-file lcov_init.info
+#        cd -
+#        print -P '%F{red}%BRun your program now...%b%f'
+#        PSINFO="(coverage)" $SHELL
+#        cd -
+#        lcov --capture --directory .. --output-file lcov.info
+#        genhtml lcov.info
+#        chromium --incognito index.html
+#        cd -
+#    }
+#fi
