@@ -35,6 +35,8 @@ fi
 #alias bellpipe='sed "s/$/\a/"'
 
 alias get='sudo apt install'
+alias getd='sudo apt -t testing install'
+
 
 #ssh-master()
 #{
@@ -95,13 +97,6 @@ alias webrun='webrun '
 #alias gr=' cd `git rev-parse --show-toplevel`'
 
 #alias 'annex-cleanmeta'='git branch -D `git branch | grep views/`'
-#annex-broadcast()
-#{
-#    local REPO
-#    for REPO in "$(git rev-parse --show-toplevel)"/.git/refs/remotes/*(:t); do
-#        git annex copy --to $REPO "$@"
-#    done
-#}
 
 #alias wow='g status --short'
 #such()
@@ -111,7 +106,7 @@ alias webrun='webrun '
 #alias such=' noglob such'
 #alias much=g
 #alias so=g
-#
+
 #alias ql=' quilt'
 #qcd()
 #{
@@ -130,19 +125,6 @@ alias webrun='webrun '
 #    zathura =(man -t $* | ps2pdf - -)
 #}
 
-#gdiff()        # not an alias to *not* inherit the completion function
-#{
-#    local i
-#    for (( i=1; i <= $#argv; ++i )); do
-#        if [ -e "$argv[i]" ]; then
-            # Resolve the symlinks as git-diff doesn't do that. Don't
-            # do it for arguments that are not files to leave the
-            # -options/--options intact.
-#            argv[$i]=$argv[$i]:A
-#        fi
-#    done
-#    git diff --no-index $argv
-#}
 #alias gdb='gdb -q'
 #alias octave='octave -q'
 #alias youtube-extract-audio='youtube-dl -x --audio-format mp3 --audio-quality 0'
@@ -153,12 +135,13 @@ alias webrun='webrun '
 #        fi
 #    done
 #fi
-# alias cal='cal -m'
 
 alias exec='exec '
-#    alias mv='mv -i'
-#    alias cp='cp -i'
+#alias mv='mv -i'
+#alias cp='cp -i'
+alias ctl="sudo systemctl"
 
+# alias cal='cal -m'
 if [ "$UID" != "0" ]; then  # not root
    # alias init='sudo init'
    # if ! (( $+commands[e] )); then
@@ -185,8 +168,7 @@ if [ "$UID" != "0" ]; then  # not root
    #     emacsclient -t $1
    # }
     alias sudo='sudo '
-    alias root='sudo su'
-    
+    alias root='sudo su'   
 else    # root
    # dired()
    # {
