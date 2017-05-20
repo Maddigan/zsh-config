@@ -9,7 +9,7 @@ export PATH="$HOME/.cabal/bin:$PATH"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
-export PATH="$HOME/.node_modules/node_modules/.bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
 
 [ -e ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
 
@@ -53,7 +53,7 @@ export PATH="$HOME/.bin:$PATH"
 
 typeset -U PATH PYTHONPATH C_INCLUDE_PATH CPLUS_INCLUDE_PATH LIBRARY_PATH LD_LIBRARY_PATH FPATH
 
-export MANPATH=":$HOME/local/share/man"
+export MANPATH="$HOME/local/share/man:"
 
 export ACRONYMDB="$HOME/.resources/acronyms"
 export RLWRAP_HOME="$HOME/.rlwrap"
