@@ -12,7 +12,7 @@ PSDIR="%(#.%F{magenta}.%F{cyan})%B%(4~:../%3~:%~)%b%f"
 PSSEP2="%F{yellow}> %f"
 
 PS1='\
-%(?..%F{red}%B$?%b%f )\
+
 ${PSINFO:+$PSINFO%b%f }\
 ${PRIV+%F{red\}%B"PRIV"%b%f }\
 $PSUSER\
@@ -27,7 +27,7 @@ ${ZLOCAL:+$ZLOCAL }\
 
 PS2='%_ %F{blue}%B>>=%b%f '
 
-RPS1='$vcs_info_msg_0_${ZTODO_PROMPT:+ %F{black\}%B|%b%f$ZTODO_PROMPT}'
+RPS1=%(?..%F{red}%B$?%b%f )\'$vcs_info_msg_0_${ZTODO_PROMPT:+ %F{black\}%B|%b%f$ZTODO_PROMPT}'
 
 
 enable-quilt-standalone-check()
