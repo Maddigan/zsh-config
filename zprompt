@@ -12,7 +12,6 @@ PSDIR="%(#.%F{magenta}.%F{cyan})%B%(4~:../%3~:%~)%b%f"
 PSSEP2="%F{yellow}> %f"
 
 PS1='\
-
 ${PSINFO:+$PSINFO%b%f }\
 ${PRIV+%F{red\}%B"PRIV"%b%f }\
 $PSUSER\
