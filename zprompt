@@ -3,13 +3,16 @@
 
 PSUSER="%(#.%F{red}.%F{green})%n%f"
 PSSEP1="%F{yellow} <%f"
+PSDIR="%(#.%F{magenta}.%F{cyan})%B%(4~:../%3~:%~)%b%f"
+PSSEP2="%F{yellow}> %f"
+
+
 #if [ -n "$SSH_CONNECTION" ]; then
 #    PSHOST="%F{yellow}%B%m%b%f"
 #else
 #    PSHOST="%F{yellow}%m%f"
 #fi
-PSDIR="%(#.%F{magenta}.%F{cyan})%B%(4~:../%3~:%~)%b%f"
-PSSEP2="%F{yellow}> %f"
+
 
 PS1='\
 ${PSINFO:+$PSINFO%b%f }\
