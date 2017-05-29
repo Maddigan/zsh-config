@@ -14,10 +14,3 @@ typeset -T LD_LIBRARY_PATH ld_library_path
 FPATH=$HOME/.fpath:$FPATH
 
 typeset -U PATH PYTHONPATH C_INCLUDE_PATH CPLUS_INCLUDE_PATH LIBRARY_PATH LD_LIBRARY_PATH FPATH
-
-export P4CONFIG=".p4config"
-export P4MERGE="m4merge"
-
-if [ -e ~/.config/ranger/rc.conf ]; then
-    export RANGER_LOAD_DEFAULT_RC=FALSE
-fi
