@@ -13,9 +13,7 @@ if (( $+commands[dircolors] )); then
     alias ls='ls --color=auto --group-directories-first'
     alias grep='grep --color=auto'
 fi
-#alias lh='ls -lh'
-#alias la='ls -A'
-#alias l='ls'
+
 #if (( $+commands[colout] )); then
 #    lhc()
 #    {
@@ -35,8 +33,6 @@ fi
 #alias bellpipe='sed "s/$/\a/"'
 
 alias get='sudo apt install'
-alias getd='sudo apt -t testing install'
-
 
 #ssh-master()
 #{
@@ -71,14 +67,16 @@ alias webrun='webrun '
 #{
 #    awk "{print \$$1}"
 #}
-#
+
+#alias 'annex-cleanmeta'='git branch -D `git branch | grep views/`'
+
 #g()
 #{
 #    if [ -z "$1" ]; then
 #        1="status"
 #        2="--short"
 #    fi
-#    git "$@"
+#   git "$@"
 #}
 #alias g=' g'
 #compdef g=git
@@ -94,9 +92,7 @@ alias webrun='webrun '
 #alias ggg=' git gg'
 #alias annex=' git annex'
 #alias 'annex-list'='annex-list --allrepos'
-#alias gr=' cd `git rev-parse --show-toplevel`'
-
-#alias 'annex-cleanmeta'='git branch -D `git branch | grep views/`'
+#alias gr=' cd `git rev-parse --show-toplevel || pwd`'
 
 #alias wow='g status --short'
 #such()
@@ -125,9 +121,6 @@ alias webrun='webrun '
 #    zathura =(man -t $* | ps2pdf - -)
 #}
 
-#alias gdb='gdb -q'
-#alias octave='octave -q'
-#alias youtube-extract-audio='youtube-dl -x --audio-format mp3 --audio-quality 0'
 #if (( $+commands[rlwrap] )); then
 #    for c in sbcl guile racket; do
 #        if (( $+commands[$c] )); then
@@ -140,6 +133,7 @@ alias exec='exec '
 #alias mv='mv -i'
 #alias cp='cp -i'
 alias ctl="sudo systemctl"
+
 
 # alias cal='cal -m'
 if [ "$UID" != "0" ]; then  # not root
@@ -206,9 +200,6 @@ alias zhist=' nano ${HISTFILE:-$DEF_HISTFILE}'
 #{
 #    find "$@" -type d -empty -delete -print
 #}
-
-#alias cdp='pushd'
-#alias pop='popd'
 
 #winevd()
 #{

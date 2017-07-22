@@ -40,28 +40,33 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\n\ncpu\t%P\ntotal\t%*E'
 #fi
 #export ALTERNATE_EDITOR="vim"
 #export SUDO_EDITOR="/usr/bin/emacsclient -c -a vim"
-#export BROWSER="chromium"
+
 export PAGER="less"
 #export TERMCMD="urxvtcd"
-setopt hist_ignore_dups         \
-    hist_ignore_space           \
-    hist_reduce_blanks          \
-    append_history              \
-    share_history               \
-    inc_append_history          \
-    hist_no_functions           \
-    extended_history            \
-    hist_no_store               \
-    interactivecomments         \
-    rc_quotes                   \
-    \
-    magicequalsubst             \
-    longlistjobs                \
-    \
-    prompt_subst                \
-    \
-    pushd_to_home               \
+OPTIONS=(
+    hist_ignore_all_dups
+    hist_ignore_space
+    hist_reduce_blanks
+    append_history
+    share_history
+    inc_append_history
+    hist_no_functions
+    extended_history
+    hist_no_store
+    interactivecomments
+    auto_cd
+    rc_quotes
+
+    extended_glob
+    magicequalsubst
+    longlistjobs
+
+    prompt_subst
+
     local_options
+)
+setopt $OPTIONS
+unset OPTIONS
 
 
 PLUGINS_DIR=~/.zplugins
