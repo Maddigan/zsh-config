@@ -32,7 +32,7 @@ fi
 #alias hilight='highlight -O ansi'
 #alias bellpipe='sed "s/$/\a/"'
 
-alias get='sudo apt install'
+alias get='sudo pacman -S'
 
 #ssh-master()
 #{
@@ -57,7 +57,7 @@ alias get='sudo apt install'
 # alias -g '@'='| sudo tee'
 # alias -g '@@'='| sudo tee -a'
 
-#alias -g 'GG'='| grep'
+alias -g 'GG'='| grep'
 
 alias noglob='noglob '
 alias webrun='webrun '
@@ -138,39 +138,9 @@ alias ctl="sudo systemctl"
 # alias cal='cal -m'
 if [ "$UID" != "0" ]; then  # not root
    # alias init='sudo init'
-   # if ! (( $+commands[e] )); then
-   #     e()
-   #     {
-   #         emacsclient -c "$@"
-   #     }
-   # fi
-   # ee()
-   # {
-   #     e -n "$@" && unset HAS_STARTED # do not print \a in the next prompt
-   # }
-   # eee()
-   # {
-   #     ee "$@" &!
-   #     exit
-   # }
-   # alias E='sudoedit'
-   # dired()
-   # {
-   #     if [ -z "$1" ]; then
-   #         1=.
-   #     fi
-   #     emacsclient -t $1
-   # }
     alias sudo='sudo '
     alias root='sudo su'   
 else    # root
-   # dired()
-   # {
-   #     if [ -z "$1" ]; then
-   #         1=.
-   #     fi
-   #     emacs -nw $1
-   # }
 fi
 
 #remake()
@@ -229,8 +199,8 @@ alias zhist=' nano ${HISTFILE:-$DEF_HISTFILE}'
 #if (( $+commands[yaourt] )); then
 #    alias y=" yaourt"
 #    alias yy='y --noconfirm'
-#    alias orphan='yaourt -Qqdt'
-#    alias orphan-clean='yaourt -Rsun `orphan`'
+    alias orphan='pacman -Qqdt'
+    alias orphan-clean='pacman -Rsun `orphan`'
 #fi
 #if (( $+commands[systemctl] )); then
 #    alias ctl="sudo systemctl"
@@ -242,7 +212,6 @@ alias zhist=' nano ${HISTFILE:-$DEF_HISTFILE}'
 #    alias restow='stow -v -t ~/local -R'
 #fi
 
-#alias pkgprefix='echo $HOME/pkgs/$PWD:t'
 
 #if (( $+commands[lcov] )); then
 #    lcov-dwim()
