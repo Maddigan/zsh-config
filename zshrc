@@ -62,6 +62,7 @@ OPTIONS=(
 setopt $OPTIONS
 unset OPTIONS
 
+source /usr/share/doc/pkgfile/command-not-found.zsh
 
 PLUGINS_DIR=~/.zplugins
 PLUGINS=(
