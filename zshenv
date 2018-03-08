@@ -16,3 +16,6 @@ typeset -T LD_LIBRARY_PATH ld_library_path
 FPATH=$HOME/.fpath:$FPATH
 
 typeset -U PATH PYTHONPATH C_INCLUDE_PATH CPLUS_INCLUDE_PATH LIBRARY_PATH LD_LIBRARY_PATH FPATH
+
+source /etc/profile.d/nix.sh
+source /etc/profile.d/nix-daemon.sh
