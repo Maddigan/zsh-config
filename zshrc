@@ -33,7 +33,7 @@ WORDCHARS='*?_-.[]~!#$%(){}<>'
 TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\n\ncpu\t%P\ntotal\t%*E'
 # REPORTTIME=10
 
-export EDITOR=nano
+export EDITOR="emacsclient -a nano"
 
 export PAGER="less"
 #export TERMCMD="urxvtcd"
