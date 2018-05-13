@@ -27,12 +27,13 @@ fi
 #    }
 #fi
 
-#alias xo='xsel -o'
-#alias xi='xsel -i'
-#alias hilight='highlight -O ansi'
-#alias bellpipe='sed "s/$/\a/"'
-
-alias get='sudo pacman -S'
+if (( $+commands[apt] )); then
+    alias get='sudo apt install'
+elif (( $+commands[emerge] )); then
+    alias get='sudo emerge -avj'
+elif (( $+commands[pacman] )); then
+    alias get='sudo pacman -S'
+fi
 
 #ssh-master()
 #{
@@ -146,11 +147,26 @@ alias ctl="sudo systemctl"
 
 # alias cal='cal -m'
 if [ "$UID" != "0" ]; then  # not root
+
    # alias init='sudo init'
+    if ! (( $+commands[e] )); then
+        e()
+        {
+            emacsclient -c "$@"
+        }
+    fi
+    ee()
+    {
+        e -n "$@" && unset HAS_STARTED # do not print \a in the next prompt
+    }
+    eee()
+    {
+        ee "$@" &!
+        exit
+    }
+    alias E='sudoedit'
     alias sudo='sudo '
     alias root='sudo su'   
-else    # root
-fi
 
 #remake()
 #{
@@ -160,7 +176,6 @@ fi
 #compdef remake=make
 
 # shortcuts
-#alias debugterm='clear && sleep 10000000'
 alias zhist=' $=EDITOR ${HISTFILE:-$DEF_HISTFILE}'
 #alias curdate='date +%y.%m.%d'
 #alias timestamp='date +%s_%F_%H.%M'
@@ -172,34 +187,6 @@ alias zhist=' $=EDITOR ${HISTFILE:-$DEF_HISTFILE}'
 #serve()
 #{
 #    python3 -m http.server ${1:-30080}
-#}
-#alias exifclean='exiftool -all= -overwrite_original'
-
-#rmdirs()
-#{
-#    find "$@" -type d -empty -delete -print
-#}
-
-#winevd()
-#{
-#    if [ -z "$2" -o -z "$3" ]; then
-#        2=1024
-#        3=768
-#    fi
-#    if [ -z "$WTITLE" ]; then
-#        WTITLE=Wine
-#    fi
-#    wine explorer /desktop=$WTITLE,${2}x${3} "$1"
-#    unset WTITLE
-#}
-
-#seturgent()
-#{
-#    print -Pn "\e]0;SET_URGENT\a"
-#    sleep 0.1
-#    wmctrl -r "`xprop -id $WINDOWID | perl -nle 'print $1 if /^WM_NAME.+= \"(.*)\"$/'`" -b add,demands_attention
-#    sleep 0.1
-#    print -Pn "\e]0;xterm\a"
 #}
 
 #if (( $+commands[pacman-color] )); then
@@ -221,21 +208,3 @@ alias zhist=' $=EDITOR ${HISTFILE:-$DEF_HISTFILE}'
 #    alias restow='stow -v -t ~/local -R'
 #fi
 
-
-#if (( $+commands[lcov] )); then
-#    lcov-dwim()
-#    {
-#        mkdir -p cov && cd cov
-
-#        lcov --zerocounters --directory ..
-#        lcov --capture --initial --directory .. --output-file lcov_init.info
-#        cd -
-#        print -P '%F{red}%BRun your program now...%b%f'
-#        PSINFO="(coverage)" $SHELL
-#        cd -
-#        lcov --capture --directory .. --output-file lcov.info
-#        genhtml lcov.info
-#        chromium --incognito index.html
-#        cd -
-#    }
-#fi

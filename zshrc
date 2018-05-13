@@ -14,7 +14,11 @@ autoload -U colors && colors
 compinit
 # End of lines added by compinstall
 
-(( $+commands[lesspipe] )) && eval `lesspipe`
+if (( $+commands[lesspipe.sh] )); then
+    eval `lesspipe.sh`
+elif (( $+commands[lesspipe] )); then
+    eval `lesspipe`
+fi
 
 autoload zmv zed
 #autoload -U insert-files && zle -N insert-files && bindkey '^X^F' insert-files
@@ -73,14 +77,13 @@ PLUGINS=(
     #zscripts
     zpriv
     #zXephyr
-    zmancolor
     #filehandlers
     #urxvt_cwd-spawn
     term-title
+<<<<<<< HEAD
     #perl-edit
     #fasd
     #scratchdir
-    #zlocalenv
     my-fixes
     #zcapture
     #ignore
