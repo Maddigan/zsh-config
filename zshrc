@@ -80,7 +80,6 @@ PLUGINS=(
     #filehandlers
     #urxvt_cwd-spawn
     term-title
-<<<<<<< HEAD
     #perl-edit
     #fasd
     #scratchdir
