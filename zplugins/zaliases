@@ -166,7 +166,8 @@ if [ "$UID" != "0" ]; then  # not root
     }
     alias E='sudoedit'
     alias sudo='sudo '
-    alias root='sudo su'   
+    alias root='sudo su'
+fi
 
 #remake()
 #{
@@ -196,7 +197,7 @@ alias zhist=' $EDITOR ${HISTFILE:-$DEF_HISTFILE}'
 #    alias y=" yaourt"
 #    alias yy='y --noconfirm'
     alias orphan='pacman -Qqdt'
-    alias orphan-clean='pacman -Rsn `orphan`'
+    alias orphan-clean='sudo pacman -Rsn `orphan`'
 #fi
 #if (( $+commands[systemctl] )); then
 #    alias ctl="sudo systemctl"
@@ -207,4 +208,3 @@ alias zhist=' $EDITOR ${HISTFILE:-$DEF_HISTFILE}'
 #    alias stowrm='stow -v -t ~/local -D'
 #    alias restow='stow -v -t ~/local -R'
 #fi
-
