@@ -145,7 +145,6 @@ alias exec='exec '
 #alias cp='cp -i'
 alias ctl="sudo systemctl"
 
-
 # alias cal='cal -m'
 if [ "$UID" != "0" ]; then  # not root
 

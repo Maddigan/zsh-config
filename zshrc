@@ -1,5 +1,21 @@
-# -*- mode: shell-script -*-
-# vim: set fdm=marker :
+# -*- sh -*-
+
+# If fish is available and we're not explicitly avoiding it...
+if (( $+commands[fish] )) && [ -z "$NOFISH" ]; then
+    # ...use it instead of zsh. A login variant if appropriate.
+    if [[ -o login ]]; then
+        exec fish -l
+    else
+        exec fish
+    fi
+
+    # We're execing from zsh to let a POSIX-like shell (zsh) perform
+    # all the necessary environmental business.  That being said, we
+    # don't need the rest of zshrc, only zshenv was interesting, so
+    # let's exec as soon as possible
+else
+    unset NOFISH
+fi
 
 # Non-interactive session, do not load the rest.
 [ -z "$PS1" ] && return
@@ -14,10 +30,12 @@ autoload -U colors && colors
 compinit
 # End of lines added by compinstall
 
-if (( $+commands[lesspipe.sh] )); then
-    eval `lesspipe.sh`
-elif (( $+commands[lesspipe] )); then
-    eval `lesspipe`
+if [ -z "$LESSOPEN" ]; then
+    if (( $+commands[lesspipe.sh] )); then
+        eval `lesspipe.sh`
+    elif (( $+commands[lesspipe] )); then
+        eval `lesspipe`
+    fi
 fi
 
 autoload zmv zed
@@ -31,6 +49,7 @@ HISTFILE=~/.zhistory
 DEF_HISTFILE=~/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
+FPATH=$HOME/.fpath:$FPATH
 
 WORDCHARS='*?_-.[]~!#$%(){}<>'
 
@@ -39,8 +58,6 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\n\ncpu\t%P\ntotal\t%*E'
 
 export EDITOR="emacsclient -a nano"
 
-export PAGER="less"
-#export TERMCMD="urxvtcd"
 OPTIONS=(
     hist_ignore_all_dups
     hist_ignore_space
