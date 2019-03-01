@@ -120,3 +120,5 @@ if [ -n "$CLEARONSTART" ]; then
     clear
     unset CLEARONSTART
 fi
+
+exec fish

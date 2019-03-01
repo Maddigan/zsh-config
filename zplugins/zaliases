@@ -178,7 +178,7 @@ fi
 #compdef remake=make
 
 # shortcuts
-alias zhist=' $EDITOR ${HISTFILE:-$DEF_HISTFILE}'
+#alias zhist=' $EDITOR ${HISTFILE:-$DEF_HISTFILE}'
 #alias curdate='date +%y.%m.%d'
 #alias timestamp='date +%s_%F_%H.%M'
 #alias t='date +%F_%H.%M'
