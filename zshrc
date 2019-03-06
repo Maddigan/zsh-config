@@ -1,5 +1,10 @@
 # -*- sh -*-
 
+# Load the SDK-specific settings in the interactive shells.
+if [ -f ~/.sdk.env ]; then
+    . ~/.sdk.env
+fi
+
 # If fish is available and we're not explicitly avoiding it...
 if (( $+commands[fish] )) && [ -z "$NOFISH" ]; then
     # ...use it instead of zsh. A login variant if appropriate.
@@ -118,11 +123,6 @@ if ! [ $TERM = "vt100" -o $TERM = "dumb" ]; then
     . ~/.zprompt
 fi
 
-# SDK-specific settings.
-if [ -f ~/.sdk.env ]; then
-    . ~/.sdk.env
-fi
-
 if [ $TERM = "eterm-color" -o -n "$MC_TMPDIR" ]; then
     unset HISTFILE
     fc -R $DEF_HISTFILE
@@ -137,5 +137,3 @@ if [ -n "$CLEARONSTART" ]; then
     clear
     unset CLEARONSTART
 fi
-
-exec fish

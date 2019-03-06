@@ -10,7 +10,6 @@ export PATH="$HOME/.bin:$PATH"
 [ -e ~/.nix-profile/etc/profile.d/nix.sh ] && source ~/.nix-profile/etc/profile.d/nix.sh
 [ -d /usr/share/terminfo ] && export TERMINFO=/usr/share/terminfo
 
-
 # A handy array-like access to these variables.
 typeset -T C_INCLUDE_PATH c_include_path
 typeset -T CPLUS_INCLUDE_PATH cplus_include_path
@@ -22,13 +21,13 @@ FPATH=$HOME/.fpath:$FPATH
 
 typeset -U PATH PYTHONPATH C_INCLUDE_PATH CPLUS_INCLUDE_PATH LIBRARY_PATH LD_LIBRARY_PATH FPATH
 
-source /etc/profile.d/nix.sh
-source /etc/profile.d/nix-daemon.sh
+[ -e /etc/profile.d/nix.sh ] && source /etc/profile.d/nix.sh
+[ -e /etc/profile.d/nix-daemon.sh ] && source /etc/profile.d/nix-daemon.sh
 
 if (( $+commands[e] && $+commands[emacsclient] )) ; then
     export EDITOR=e # Emacs wrapper necessary because of the broken word splitting in some programs
 else
-    export EDITOR=vim
+    export EDITOR=nano
 fi
 export VISUAL=$EDITOR
 export ALTERNATE_EDITOR="nano"
