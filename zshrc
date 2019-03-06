@@ -61,7 +61,7 @@ WORDCHARS='*?_-.[]~!#$%(){}<>'
 TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\n\ncpu\t%P\ntotal\t%*E'
 # REPORTTIME=10
 
-export EDITOR="emacsclient -a nano"
+# export EDITOR="emacsclient -a nano"
 
 OPTIONS=(
     hist_ignore_all_dups
@@ -88,7 +88,7 @@ OPTIONS=(
 setopt $OPTIONS
 unset OPTIONS
 
-source /usr/share/doc/pkgfile/command-not-found.zsh
+# source /usr/share/doc/pkgfile/command-not-found.zsh
 
 PLUGINS_DIR=~/.zplugins
 PLUGINS=(
