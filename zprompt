@@ -7,11 +7,11 @@ PSDIR="%(#.%F{magenta}.%F{cyan})%B%(4~:../%3~:%~)%b%f"
 PSSEP2="%F{yellow}> %f"
 
 
-#if [ -n "$SSH_CONNECTION" ]; then
-#    PSHOST="%F{yellow}%B%m%b%f"
-#else
-#    PSHOST="%F{yellow}%m%f"
-#fi
+if [ -n "$SSH_CONNECTION" ]; then
+    PSUSER="%F{white}[ssh] %f%(#.%F{red}.%F{green})%n%f"
+else
+    PSUSER="%(#.%F{red}.%F{green})%n%f"
+fi
 
 
 PS1='\
