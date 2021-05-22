@@ -178,9 +178,9 @@ fi
 
 # shortcuts
 #alias zhist=' $EDITOR ${HISTFILE:-$DEF_HISTFILE}'
-#alias curdate='date +%y.%m.%d'
-#alias timestamp='date +%s_%F_%H.%M'
-#alias t='date +%F_%H.%M'
+alias curdate='date +%y.%m.%d'
+alias timestamp='date +%s_%F_%H.%M'
+alias t='date +%F_%H.%M'
 #alias yargs='xargs -d \\n'
 #alias recordscreen='ffmpeg -f x11grab -y -r 60 -s 1680x1050 -i :0.0 -async 0 -vsync 0' # usage: recordscreen FILE.mp4
 #alias wgetn='wget --no-use-server-timestamps'
@@ -208,4 +208,37 @@ fi
 #    alias stowrm='stow -v -t ~/local -D'
 #    alias restow='stow -v -t ~/local -R'
 #fi
+serve()
+{
+    python3 -m http.server ${1:-30080}
+}
+
+seturgent()
+{
+    print -Pn "\e]0;SET_URGENT\a"
+    sleep 0.1
+    wmctrl -r "`xprop -id $WINDOWID | perl -nle 'print $1 if /^WM_NAME.+= \"(.*)\"$/'`" -b add,demands_attention
+    sleep 0.1
+    print -Pn "\e]0;xterm\a"
+}
+
+if (( $+commands[pacman-color] )); then
+    alias pacman=pacman-color
+fi
+if (( $+commands[yaourt] )); then
+    alias y=" yaourt"
+    alias yy='y --noconfirm'
+    alias orphan='yaourt -Qqdt'
+    alias orphan-clean='yaourt -Rsun `orphan`'
+fi
+if (( $+commands[systemctl] )); then
+    alias ctl="sudo systemctl"
+fi
+
+if (( $+commands[stow] )); then
+    alias stowadd='stow -v -t ~/local --no-folding -S'
+    alias stowrm='stow -v -t ~/local --no-folding -D'
+    alias restow='stow -v -t ~/local --no-folding -R'
+fi
+>>>>>>> 28418a40759d9bef25e9e4b956eeb955a84a73ca
 
