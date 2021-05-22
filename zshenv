@@ -39,3 +39,5 @@ fi
 export PAGER="less"
 export TERMCMD="urxvtcd"
 export DVTM_EDITOR="less"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
